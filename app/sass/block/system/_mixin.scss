@@ -1,0 +1,47 @@
+//for stylization input placeholder
+@mixin placeholder {
+  &::placeholder {
+    @content;
+  }
+  &::-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+}
+
+//for pseudo elements
+@mixin pseudo($content: '', $pos: absolute, $display: block) {
+  position: relative;
+  &::after, &::before {
+    content: $content;
+    display: $display;
+    position: $pos;
+  }
+}
+
+//for links state
+@mixin links ($color_hover, $color_active, $color_focus, $color_visit) {
+  //a {
+  &:visited {
+    color: $color_visit;
+  }
+  &:focus {
+    color: $color_focus;
+  }
+  &:active {
+    color: $color_active;
+  }
+  &:hover {
+    color: $color_hover;
+    background-color: $background_color_hover;
+  }
+  //}
+}
+
+
+

@@ -1,0 +1,10 @@
+$background_color_hover: #e50000;
+$color_hover: white;
+$font_family_toyota_text: 'Toyota Text', Arial, sans-serif;
+$font_family_toyota_display: 'Toyota Display', Arial, sans-serif;
+$font_family_pt_sans: 'Conv_PT_Sans-Web-Bold', Arial, sans-serif;
+$font_size_title: 32px;
+$font_size_main: 18px;
+$font_size_link: 16px;
+$breakpoint_query: (xs: 0, xss: 321px, xsm:375px, xsi: 421px, sm: 576px, md: 768px, lg: 992px, xl: 1200px, xls: 1366px, xlm: 1441px, xlg: 1601px);
+$grid-breakpoints: $breakpoint_query;

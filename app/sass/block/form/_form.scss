@@ -1,0 +1,159 @@
+.modal-form-size {
+  height: 100%;
+  width: 100%;
+  //background-color: #656565;
+  padding: 40px 20px 0 20px;
+  background-color: rgba(42, 42, 42, 0.6);
+  position: absolute;
+  z-index: 6;
+  display: none;
+}
+//.modal-form__title {
+//  font-size: $font_size_main + 6;
+//  text-align: center;
+//  @include pseudo;
+//  &:after {
+//    height: 3px;
+//    background-color: rgba(229, 0, 0, 0.502);
+//    width: 80px;
+//    top: 40px;
+//    left: 40%;
+//  }
+//}
+.modal-form {
+  background-color: white;
+  height: 520px;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 20px 50px;
+  @include media-breakpoint-down (sm) {
+    height: auto;
+    padding: 10px 10px;
+  }
+  .button-close-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__title {
+    font-size: $font_size_main + 6;
+    text-align: center;
+    @include pseudo;
+    &:after {
+      height: 3px;
+      background-color: rgba(229, 0, 0, 0.502);
+      width: 80px;
+      top: 40px;
+      left: 40%;
+    }
+    @include media-breakpoint-down (sm) {
+      &:after {
+        content: none;
+      }
+    }
+  }
+  &__close {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    display: block;
+    @include pseudo();
+    &:after, &:before {
+      background-color: #cacac9;
+      height: 13px;
+      width: 1px;
+      top: 1px;
+      left: 8px;
+    }
+    &:after {
+      transform: rotate(45deg);
+    }
+    &:before {
+      transform: rotate(-45deg);
+    }
+  }
+  &__text {
+    font-size: $font_size_main - 2;
+    text-align: center;
+    padding: 30px 0;
+    line-height: 1.5;
+    max-width: 70%;
+    margin: 0 auto;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .modal-form-input {
+    width: 80%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #afafaf;
+    border-radius: 5px;
+    @include placeholder {
+      font-family: $font_family_toyota_text;
+      font-size: $font_size_main - 4;
+      color: #979797;
+    }
+  }
+  .input-auto {
+    width: 50%;
+    margin-right: 7px;
+  }
+  .input-year {
+    width: 27%;
+    margin-left: 5px;
+  }
+  .input-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  &__row {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 25px;
+  }
+  &__accept {
+    font-size: $font_size_main - 4;
+    line-height: 1.2;
+    text-align: center;
+  }
+}
+
+//the checkbox modal-form styles started
+
+.modal-form-label {
+  display: flex;
+  a {
+    color: #cfcfcf;
+    text-decoration: none;
+    border-bottom: 1px solid #cfcfcf;
+    &:hover, &:active, &:focus, &:visited {
+      color: #434343;
+      border: none;
+    }
+  }
+  @include media-breakpoint-down (sm) {
+    display: block;
+  }
+}
+.checkbox_none {
+  display: none;
+}
+.modal-form-label > span {
+  display: inline-block;
+  width: 17px;
+  height: 15px;
+  margin: 0 15px 0 0;
+  cursor: pointer;
+  border: 1px solid $background_color_hover;
+}
+.modal-form-label > .checkbox_none:checked + span {
+  background-image: url("../../../img/checkbox-active-min.png");
+  border: none;
+}
+
+//the checkbox modal-form styles end

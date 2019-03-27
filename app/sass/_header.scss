@@ -1,0 +1,173 @@
+.header-full-size {
+  box-shadow: 1px 1px 13px 2px #acacac3d;
+  //@include media-breakpoint-down(sm) {
+  //  box-shadow: none;
+  //}
+}
+.header {
+  font-family: $font_family_toyota_display;
+  font-weight: bold;
+  &__navbar {
+
+  }
+  .menu {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    text-align: center;
+    @include media-breakpoint-down(lg) {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    @include media-breakpoint-down (sm) {
+      flex-direction: column;
+      display: none;
+    }
+    &__item {
+      width: 130px;
+      list-style-type: none;
+      @include media-breakpoint-down(lg) {
+        width: auto;
+      }
+    }
+    &__item-link {
+      color:#333333;
+      @include links (#ffffff, #ffffff, #333333, #333333);
+      text-decoration: none;
+      display: block;
+      padding: 35px 0;
+      height: 100px;
+      @include media-breakpoint-down(lg) {
+        padding: 5px 10px;
+        height: auto;
+      }
+    }
+  }
+}
+
+//the styles fo hamburger menu
+
+@include media-breakpoint-down(sm) {
+  %line{
+    background: black;
+    width:30px;
+    height:3px;
+  }
+
+  //Slide that sub-menu in
+  @keyframes menu-active-slide {
+    0% {
+      transform: translateX(-10px);
+    }
+    100%{
+      transform: translateX(0);
+    }
+  }
+
+  //Rotate that top bar on active
+  @keyframes top-rot-in {
+    0% {
+      transform: rotate(0deg);
+      transform-origin: left;
+    }
+    100% {
+      transform: rotate(45deg);
+      transform-origin: left;
+
+    }
+  }
+  //Rotate that bottom bar on active
+  @keyframes bot-rot-in {
+    0% {
+      transform: rotate(0deg);
+      transform-origin: left;
+    }
+    100% {
+      transform: rotate(-45deg);
+      transform-origin: left;
+
+    }
+  }
+
+  .button{
+    padding:10px;
+    height: 50px;
+    width: 50px;
+    display:block;
+    position: relative;
+    z-index: 5;
+    //@include media-breakpoint-down (sm) {
+    //  z-index: 5;
+    //}
+  }
+
+  .mobile-menu{
+    @extend %line;
+    position: absolute;
+    top: 24px;
+    //display: none;
+    &:before{
+      @extend %line;
+      content: '';
+      position: absolute;
+      top: -8px;
+      animation:  menu-load-state-top .5s;
+    }
+    &:after{
+      @extend %line;
+      content: '';
+      position: absolute;
+      top: 8px;
+      left:0;
+      animation:  menu-load-state-bottom .5s;
+    }
+  }
+
+
+  ///Lets make a sub-menu
+  .mobile-menu__item{
+    list-style-type:none;
+    margin:0;
+    position:fixed;
+    top:8px;
+    //left:73px;
+    transition: opacity 0.25s ease;
+    display: none;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    z-index: 5;
+    //@include media-breakpoint-down (sm) {
+    //  left: 0;
+    //  height: 100vh;
+    //  width: 100vw;
+    //  background-color: white;
+    //  z-index: 5;
+    //  display: none;
+    //}
+  }
+
+  .active{
+    .mobile-menu{
+      background:transparent;
+      //display: block;
+      &:before{
+        top: -11px;
+        left:5px;
+        animation: top-rot-in .5s forwards;
+      }
+      &:after{
+        top: 10px;
+        left:5px;
+        animation: bot-rot-in .5s forwards;
+      }
+
+    }
+    .mobile-menu__item{
+      display: block;
+      transition: opacity 0.25s ease;
+      animation: menu-active-slide .25s;
+    }
+  }
+}

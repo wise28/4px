@@ -1,0 +1,12 @@
+.footer-full-size {
+  background-color: #dadada;
+}
+.footer-wrapper {
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+.footer-text {
+  color: #868686;
+  font-size: $font_size_main - 4;
+}

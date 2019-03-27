@@ -1,0 +1,14 @@
+.main-button {
+  font-size: $font_size_link;
+  font-family: $font_family_toyota_display;
+  width: 250px;
+  border-radius: 25px;
+  padding: 15px 0;
+  cursor: pointer;
+  background-color: $background_color_hover;
+  color: white;
+  &:hover, &:active, &:focus, &:visited {
+  background-color: rgb(194, 3, 3);
+  }
+}
+

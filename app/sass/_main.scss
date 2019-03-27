@@ -1,0 +1,451 @@
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition:.25s ease-in-out;
+}
+
+html {
+  font-size: $font_size_main;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font_family_toyota_text;
+  position: relative;
+}
+
+.container {
+  display: block;
+  max-width: 1230px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+img {
+  max-width:100%;
+  height:auto;
+}
+
+//the tabs style started
+.tabs {
+  &__caption {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    @include media-breakpoint-down (xl) {
+      justify-content: center;
+    }
+    &-wrapper {
+      background-color: rgb(51, 51, 51);
+      color: $color_hover;
+    }
+  }
+  &__item {
+    width: 280px;
+    cursor: pointer;
+    color: #fff;
+    padding: 20px;
+    @include links (#ffffff, #ffffff, #ffffff, #ffffff);
+    &_active {
+      background-color: $background_color_hover;
+    }
+    &-title {
+      font-family: $font_family_toyota_display;
+      font-size: 50px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+    }
+    &_color {
+      color: #696969;
+      font-weight: bold;
+      padding-right: 10px;
+      @include links (#ffffff, #ffffff, #ffffff,#696969);
+    }
+    .color_active {
+      color: white;
+    }
+    &_size {
+      font-size: 18px;
+    }
+    &-text {
+      font-size: $font_size_link - 2;
+      line-height: 1.286;
+    }
+  }
+  &__content {
+    display: none;
+    background-image: url("../img/auto-bg-min.png");
+    background-repeat: no-repeat;
+    background-position: right top;
+    font-family: $font_family_toyota_display;
+    @include media-breakpoint-between (1367, xlm) {
+      background-size: contain;
+    }
+    @include media-breakpoint-between (1201, xls) {
+      background-size: 70%;
+    }
+    @include media-breakpoint-between (769, xl) {
+      background-image: url("../img/bg-only-auto-min.png");
+      //background-size: auto;
+      background-position: right bottom;
+      background-size: 57%;
+      //background-color: #ebebeb;
+      background-color: white;
+    }
+    @include media-breakpoint-down (md) {
+      //background-color: #ebebeb;
+      background-image: none;
+      background-color: white;
+    }
+  }
+  &__content_active {
+    display: block;
+    padding: 0 35px;
+    @include media-breakpoint-down (lg) {
+      padding: 0 10px;
+    }
+  }
+}
+.about-auto {
+  padding: 50px 0;
+  @include media-breakpoint-down (sm) {
+    padding: 10px 0;
+  }
+  &__icon {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__title {
+    background-image: url("../img/bg-h1-min.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+    padding: 38px 50px;
+    font-size: 32px;
+    line-height: 1.5;
+    font-family: $font_family_toyota_display;
+  }
+}
+.about-auto-content {
+  max-width: 490px;
+  padding: 0 35px 40px 35px;
+  @include media-breakpoint-down (sm) {
+    padding: 0 5px 10px 5px;
+  }
+}
+
+.stock-item-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  text-transform: uppercase;
+  padding-bottom: 40px;
+  @include media-breakpoint-down (sm) {
+    flex-wrap: wrap;
+    padding-bottom: 0;
+  }
+}
+.stock-item {
+  display: flex;
+  flex-direction: column;
+  width: 245px;
+  &__title {
+    padding-top: 10px;
+    font-size: $font_size_main - 6;
+    font-weight: bold;
+    @include pseudo;
+    &:before {
+      top:0;
+      left:0;
+      width: 50px;
+      height: 3px;
+      background-color: rgba(51, 51, 51, 0.502);
+    }
+    &:after {
+      content: none;
+    }
+  }
+  &__text {
+    font-size: $font_size_title + 2;
+    font-weight: bold;
+  }
+  &_size {
+    width: auto;
+  }
+}
+.stock-opportunity {
+  width: 250px;
+  &__test {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 10px 0;
+    width: 250px;
+  }
+  .opportunity-test-link {
+    text-decoration: none;
+    color: $background_color_hover;
+    border-bottom: 1px solid $background_color_hover;
+    padding-bottom: 5px;
+    cursor: pointer;
+    font-size: $font_size_main - 2;
+  }
+  .opportunity-test-img {
+    padding-right: 10px;
+  }
+  &__offer {
+    padding: 10px 0;
+  }
+  &__low {
+    text-align: right;
+    .opportunity-low-button {
+      font-family: $font_family_toyota_text;
+      font-size: $font_size_main - 2;
+      border-bottom: 2px dotted $background_color_hover;
+      color: #333333;
+      text-decoration: none;
+    }
+  }
+}
+//the tabs style end
+
+//the section available-auto started
+
+.available-auto {
+  margin-top: 90px;
+  margin-bottom: 40px;
+  &__content {
+    display: flex;
+    margin-top: 60px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+.available-auto-img {
+  flex-shrink: 0;
+  padding: 10px;
+  @include media-breakpoint-down (sm) {
+    max-width: 320px;
+  }
+}
+.second-heading {
+  font-family: $font_family_toyota_display;
+  font-size: $font_size_title;
+  text-align: center;
+  color: rgb(51, 51, 51);
+  @include pseudo;
+  &:before {
+    content: none;
+  }
+  &:after {
+    height: 3px;
+    background-color: rgba(229, 0, 0, 0.502);
+    top: 50px;
+    width: 80px;
+    left: 48%;
+  }
+  @include media-breakpoint-down (sm) {
+    font-size: $font_size_title - 8;
+    &:after {
+      left: 38%;
+    }
+  }
+}
+.auto-description-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 720px;
+  justify-content: space-around;
+  background-color: #f6f6f6;
+  padding: 30px 0;
+  @include media-breakpoint-down (sm) {
+    flex-direction: column;
+  }
+}
+.auto-description {
+  &__title {
+    font-family: $font_family_toyota_display;
+    font-size: $font_size_main + 6;
+    font-weight: bold;
+  }
+  &__item {
+    color: rgb(51, 51, 51);
+    padding-top: 15px;
+  }
+}
+.auto-profit {
+  &__item {
+    padding-top: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: $font_size_main - 4;
+    span {
+      font-size: $font_size_main + 6;
+      color: $background_color_hover;
+    }
+  }
+  &_color {
+    padding-top: 20px;
+    font-size: $font_size_main + 2;
+    color: rgba(51, 51, 51, 0.702);
+  }
+  .profit-phone_color {
+    font-family: $font_family_toyota_text;
+    font-weight: bold;
+    color: rgb(51, 51, 51);
+  }
+  &__button {
+    margin-top: 15px;
+  }
+}
+.button-more-wrapper {
+  text-align: center;
+  padding: 30px 0;
+}
+.available-auto__button {
+  color: $background_color_hover;
+  border-bottom: 2px solid $background_color_hover;
+  padding-bottom: 2px;
+  cursor: pointer;
+  font-family: $font_family_toyota_display;
+  font-size: $font_size_main - 2;
+  @include pseudo;
+  &:before {
+    content: none;
+  }
+  &:after {
+    content: url("../img/look-more-arrow-min.png");
+    right: -25px;
+    top: 4px;
+  }
+}
+//the section available-auto end
+
+// the section unique-experience started
+
+.offer-full-size {
+  background-color: #f0f0f0;
+  padding: 35px 0;
+  .unique-experience {
+    &__text {
+      text-align: center;
+      padding: 30px 0 20px 0;
+      color: rgb(51, 51, 51);
+      line-height: 1;
+      font-size: $font_size_main + 6;
+    }
+    &__form {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      .offer-form-input {
+        width: 400px;
+        padding: 10px 0 10px 20px;
+        border-radius: 25px;
+        margin-right: -50px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        box-shadow: 2px 1px 3px 0 rgb(184, 170, 170);
+        @include placeholder {
+          font-size: $font_size_main - 2;
+          font-family: $font_family_toyota_display;
+          color: rgba(61, 61, 61, 0.502);
+          line-height: 1.2;
+        }
+        @include media-breakpoint-down (sm) {
+          max-width: 250px;
+          margin-right: 0;
+        }
+      }
+      .offer-form-button {
+        margin: 10px 0;
+      }
+    }
+  }
+}
+
+// the section unique-experience end
+
+//the section auto-map started
+
+.auto-map {
+  margin-top: 90px;
+  &__title {
+    padding-bottom: 60px;
+    @include media-breakpoint-between (md, xl) {
+      padding-left: 30px;
+    }
+  }
+}
+
+//the section auto-map end
+
+//the section stock-condition started
+.stock-full-size {
+  background-color: #f0f0f0;
+}
+.button-up-wrapper {
+  padding: 35px 0;
+}
+.button-up {
+  width: 50px;
+  height: 50px;
+  border: 1px solid $background_color_hover;
+  border-radius: 3px;
+  background-color: $background_color_hover;
+  box-shadow: 0 0 9px 1px rgba(0, 0, 0, 0.15);
+  display: block;
+  margin: 0 auto;
+  &:hover, &:active, &:focus, &:visited {
+    background-color: rgb(194, 3, 3);
+  }
+  @include pseudo;
+  &:before {
+    content: none;
+  }
+  &:after {
+    content: url("../img/button-up-arrow-min.png");
+    top: 25%;
+    bottom: 0;
+    left: 30%;
+    right: 0;
+  }
+}
+
+.stock-condition {
+  .condition-button-wrapper {
+    padding: 25px 0;
+  }
+  &__button {
+    font-family: $font_family_toyota_display;
+    font-weight: bold;
+    color: $background_color_hover;
+    cursor: pointer;
+    @include pseudo;
+    &:before {
+      content: none;
+    }
+    &:after {
+      content: url("../img/condition-arrow-min.png");
+      right: -28px;
+      top: 1px;
+    }
+  }
+  &__text {
+    font-size: $font_size_main - 4;
+    padding-bottom: 30px;
+    line-height: 1.571;
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+//the section stock-condition end
