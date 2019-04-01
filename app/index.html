@@ -5,10 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Toyota</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/browserconfig.xml">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon.ico">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/toyota_style.css">
 
     <script src="js/jquery.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script src="js/jquery.maskedinput.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ef67a35f-9593-4565-aa75-5f5cab7d8a73&lang=ru_RU" type="text/javascript"></script>
     <script src="js/toyota_script.js" defer></script>
 </head>
 <body>
@@ -17,22 +29,19 @@
         <div class="button-close-wrapper"><span class="modal-form__close" role="button"></span></div>
         <h2 class="modal-form__title">Заказать оценку автомобиля</h2>
         <p class="modal-form__text">Заполните форму ниже, чтобы заказать оценку вашего автомобиля</p>
-        <!--<div class="form-content-wrapper">-->
-            <div class="modal-form__content">
-                <input type="text" placeholder="Имя" name="name" class="modal-form-input">
-                <input type="tel" placeholder="Телефон" name="phone" class="modal-form-input">
-                <div class="input-wrapper">
-                    <input type="text" placeholder="Автомобиль" name="auto" class="modal-form-input input-auto">
-                    <input type="text" placeholder="Год" name="year" class="modal-form-input input-year">
-                </div>
+        <div class="modal-form__content">
+            <input type="text" placeholder="Имя" name="name" class="modal-form-input" tabindex="1">
+            <input type="tel" placeholder="Телефон" name="phone" class="modal-form-input" tabindex="2">
+            <div class="input-wrapper">
+                <input type="text" placeholder="Автомобиль" name="auto" class="modal-form-input input-auto" tabindex="3">
+                <input type="text" placeholder="Год" name="year" class="modal-form-input input-year" tabindex="4">
             </div>
-        <!--</div>-->
-        <div class="modal-form__row"><input class="main-button" type="submit" value="Заказать оценку"></div>
+        </div>
+        <div class="modal-form__row"><input class="main-button" type="submit" value="Заказать оценку" tabindex="5"></div>
         <div class="modal-form__accept">
             <label class="modal-form-label">
-                <input type="checkbox" name="accept" class="checkbox_none" />
+                <input type="checkbox" name="accept" class="checkbox-none" tabindex="6">
                 <span class="modal-form-checkbox"></span>Я согласен&nbsp;<a href="#">с условиями обработки персональных данных</a>
-
             </label>
         </div>
     </form>
@@ -42,7 +51,7 @@
         <div class="row">
             <div class="header">
                 <nav class="header__navbar">
-                    <ul class="menu mobile-menu__item">
+                    <ul class="menu mobile-sub-menu">
                         <li class="menu__item"><a href="#" class="menu__item-link">Corolla</a></li>
                         <li class="menu__item"><a href="#" class="menu__item-link">Camry</a></li>
                         <li class="menu__item"><a href="#" class="menu__item-link">RAV4</a></li>
@@ -53,8 +62,8 @@
                         <li class="menu__item"><a href="#" class="menu__item-link">Fortuner</a></li>
                         <li class="menu__item"><a href="#" class="menu__item-link">Prius</a></li>
                     </ul>
-                    <a href="#" class="button">
-                        <span class="mobile-menu">
+                    <a href="#" class="hamburger">
+                        <span class="hamburger__wrap-lines">
                           <b></b>
                         </span>
                     </a>
@@ -70,9 +79,15 @@
                     <div class="row">
                         <div class="about-auto">
                             <div class="about-auto__icon">
-                                <!--<div><img src="img/auto-mark-min.png" alt=""></div>-->
-                                <h1 class="about-auto__title">Fortuner</h1>
-                                <div><img src="img/special-price-min.png" alt=""></div>
+                                <div class="heading-wrap">
+                                    <h1 class="heading-wrap__title">Fortuner</h1>
+                                    <p class="heading-wrap__text">Ты настоящий</p>
+                                </div>
+                                <div class="special-price">
+                                    <p class="special-price__block"></p>
+                                    <span class="price__title">Специальная цена от официального дилера</span>
+                                    <p class="special-price__block block-another-color"></p>
+                                </div>
                             </div>
                         </div>
                         <div class="about-auto-content">
@@ -145,7 +160,7 @@
                         <ul class="tabs__caption">
                             <li class="tabs__item tabs__item_active">
                                 <p class="tabs__item-title">
-                                    <span class="tabs__item_color color_active">01</span>
+                                    <span class="tabs__item_color color-active">01</span>
                                     <span class="tabs__item_size">цена как для сотрудника</span>
                                 </p>
                                 <p class="tabs__item-text">Отдаем а/м по закрытому прайсу, как для сотрудника ДЦ.</p>
@@ -202,6 +217,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="available-auto_none">
+                    <div class="available-auto__content">
+                        <div class="available-auto-img"><img src="img/available-auto-min.png" alt=""></div>
+                        <div class="auto-description-wrapper">
+                            <div class="auto-description">
+                                <p class="auto-description__title">Fortuner</p>
+                                <p class="auto-description__item">Год выпуска:<span> 2016</span></p>
+                                <p class="auto-description__item">Двигатель: <span>1,6 МТ (110 л.с.)</span></p>
+                                <p class="auto-description__item">КПП: <span>Механическая</span></p>
+                                <p class="auto-description__item">Привод: <span>Передний привод</span></p>
+                                <p class="auto-description__item">Цвет: <span>Серый металлик</span></p>
+                            </div>
+                            <div class="auto-profit">
+                                <p class="auto-profit__item">выгода до <span>100 500 ₽</span></p>
+                                <p class="auto-profit__item">в кредит от <span>5 000 ₽/мес</span></p>
+                                <p class="auto-profit_color">Подробнее: <span class="profit-phone_color">+7 (351)211-10-10</span></p>
+                                <button class="main-button auto-profit__button">Узнать цену</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <p class="button-more-wrapper"><span class="available-auto__button" role="button">Смотреть ещё</span></p>
             </div>
         </section>
@@ -212,8 +248,8 @@
                         <h2 class="unique-experience__title second-heading">Уникальное предложение!</h2>
                         <p class="unique-experience__text">Получите максимально выгодные условия на покупку <strong>Toyota</strong></p>
                         <form class="unique-experience__form" action="#" method="post">
-                            <input type="tel" placeholder="Введите номер телефона" class="offer-form-input" name="phone">
-                            <button class="main-button offer-form-button">Получить предложение</button>
+                            <input type="tel" placeholder="Введите номер телефона" class="offer-form-input" name="phone" tabindex="1">
+                            <button class="main-button offer-form-button" tabindex="2">Получить предложение</button>
                         </form>
                     </div>
                 </div>
@@ -221,29 +257,32 @@
         </section>
         <section class="auto-map">
             <h2 class="auto-map__title second-heading">Контакты</h2>
-            <script async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Abb22003fd73b4c4d8dc8a728fb200d78cfca274947091084317937fb33c16b95&amp;width=100%25&amp;height=400&amp;lang=ru_UA&amp;scroll=true"></script>
+            <div id="auto-map__item" style="width: 100%; height: 400px"></div>
+            <!--<script async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3Abb22003fd73b4c4d8dc8a728fb200d78cfca274947091084317937fb33c16b95&amp;width=100%25&amp;height=400&amp;lang=ru_UA&amp;scroll=true"></script>-->
         </section>
         <div class="stock-full-size">
-            <div class="stock-condition container">
+            <div class="container">
                 <div class="row">
-                    <div class="button-up-wrapper"><a href="#" class="button-up"></a></div>
-                    <p class="condition-button-wrapper"><span role="button" class="stock-condition__button">Условия акции</span></p>
-                    <p class="stock-condition__text">*Предложение действует до&nbsp;31.03.18г.</p>
-                    <p class="stock-condition__text">Выгода достигается посредством предоставления скидки от&nbsp;максимальной цены перепродажи
-                        автомобиля при передаче автомобиля с&nbsp;пробегом в&nbsp;счет стоимости нового автомобиля, а&nbsp;также скидки при приобретении автомобиля по&nbsp;всем
-                        кредитным программам от&nbsp;АО&nbsp;&laquo;Тойота Банк&raquo;, а&nbsp;так&nbsp;же одновременном страховании по&nbsp;договору КАСКО в&nbsp;рамках программы Тойота Страхование,
-                        организатором которой является ООО &laquo;Тойота Иншуранс Менеджмент (Страховые брокеры)&raquo; (Лицензия ЦБ&nbsp;РФ&nbsp;СБ&#8470;&nbsp;4339) и&nbsp;скидки дилера
-                        зависящей от&nbsp;комплектации выбранной модели, подарками дополнительным оборудованием, или специальной ценой.
-                        Подробнее в&nbsp;дилерском центре по&nbsp;тел. &mdash;&nbsp;<a href="tel:+73512111010">+7(351)2111010&Prime;</a></p>
-                    <p class="stock-condition__text">** Кредит&nbsp;5,5%: Ставка указана по&nbsp;кредитной программе &laquo;Выгодный (новые автомобили) 02_18&raquo;
-                        при первоначальном взносе (ПВ) от&nbsp;70% и&nbsp;сроке кредита (СК) 12&nbsp;мес.
-                        Условия кредитования: годовая процентная ставка при&nbsp;ПВ от&nbsp;70% и&nbsp;СК&nbsp;12&nbsp;мес. &mdash;&nbsp;5,5% годовых, при&nbsp;СК от&nbsp;13&nbsp;до&nbsp;24&nbsp;мес. &mdash;&nbsp;7,5% годовых,
-                        при&nbsp;СК от&nbsp;25&nbsp;до&nbsp;36&nbsp;мес. &mdash;&nbsp;9,5% годовых; при&nbsp;ПВ от&nbsp;40&nbsp;до&nbsp;69,9% и&nbsp;СК&nbsp;12&nbsp;мес. &mdash;&nbsp;5,5% годовых, при&nbsp;СК от&nbsp;13&nbsp;до&nbsp;24&nbsp;мес. &mdash;&nbsp;8,5% годовых,
-                        при&nbsp;СК от&nbsp;25&nbsp;до&nbsp;36&nbsp;мес. &mdash;&nbsp;9,9% годовых. Валюта кредита&nbsp;&mdash; рубли РФ. Минимальная сумма кредита&nbsp;&mdash; 300&nbsp;000&nbsp;руб.
-                        Погашение аннуитетными (равными по&nbsp;сумме ежемесячными) платежами. Обязательная передача приобретаемого с&nbsp;использованием кредита а/м
-                        в&nbsp;залог и&nbsp;страхование по&nbsp;программе КАСКО. Кредитование осуществляется АО&nbsp;&laquo;Тойота Банк&raquo; в&nbsp;регионах присутствия АО&nbsp;&laquo;Тойота Банк&raquo;.
-                        Лицензии Банка России &#8470;&nbsp;3470. Подробнее на&nbsp;сайте <a href="http://www.toyota-bank.ru">www.toyota-bank.ru</a> или
-                        по&nbsp;тел.&nbsp;<a href="tel:+78002000840">8&nbsp;800&nbsp;200 08 40</a>. Предложение действует с&nbsp;01.02.2018.</p>
+                    <div class="stock-condition">
+                        <div class="button-up-wrapper"><a href="#" class="button-up"></a></div>
+                        <p class="condition-button-wrapper"><span role="button" class="stock-condition__button">Условия акции</span></p>
+                        <p class="stock-condition__text">*Предложение действует до&nbsp;31.03.18г.</p>
+                        <p class="stock-condition__text">Выгода достигается посредством предоставления скидки от&nbsp;максимальной цены перепродажи
+                            автомобиля при передаче автомобиля с&nbsp;пробегом в&nbsp;счет стоимости нового автомобиля, а&nbsp;также скидки при приобретении автомобиля по&nbsp;всем
+                            кредитным программам от&nbsp;АО&nbsp;&laquo;Тойота Банк&raquo;, а&nbsp;так&nbsp;же одновременном страховании по&nbsp;договору КАСКО в&nbsp;рамках программы Тойота Страхование,
+                            организатором которой является ООО &laquo;Тойота Иншуранс Менеджмент (Страховые брокеры)&raquo; (Лицензия ЦБ&nbsp;РФ&nbsp;СБ&#8470;&nbsp;4339) и&nbsp;скидки дилера
+                            зависящей от&nbsp;комплектации выбранной модели, подарками дополнительным оборудованием, или специальной ценой.
+                            Подробнее в&nbsp;дилерском центре по&nbsp;тел. &mdash;&nbsp;<a href="tel:+73512111010">+7(351)2111010&Prime;</a></p>
+                        <p class="stock-condition__text">** Кредит&nbsp;5,5%: Ставка указана по&nbsp;кредитной программе &laquo;Выгодный (новые автомобили) 02_18&raquo;
+                            при первоначальном взносе (ПВ) от&nbsp;70% и&nbsp;сроке кредита (СК) 12&nbsp;мес.
+                            Условия кредитования: годовая процентная ставка при&nbsp;ПВ от&nbsp;70% и&nbsp;СК&nbsp;12&nbsp;мес. &mdash;&nbsp;5,5% годовых, при&nbsp;СК от&nbsp;13&nbsp;до&nbsp;24&nbsp;мес. &mdash;&nbsp;7,5% годовых,
+                            при&nbsp;СК от&nbsp;25&nbsp;до&nbsp;36&nbsp;мес. &mdash;&nbsp;9,5% годовых; при&nbsp;ПВ от&nbsp;40&nbsp;до&nbsp;69,9% и&nbsp;СК&nbsp;12&nbsp;мес. &mdash;&nbsp;5,5% годовых, при&nbsp;СК от&nbsp;13&nbsp;до&nbsp;24&nbsp;мес. &mdash;&nbsp;8,5% годовых,
+                            при&nbsp;СК от&nbsp;25&nbsp;до&nbsp;36&nbsp;мес. &mdash;&nbsp;9,9% годовых. Валюта кредита&nbsp;&mdash; рубли РФ. Минимальная сумма кредита&nbsp;&mdash; 300&nbsp;000&nbsp;руб.
+                            Погашение аннуитетными (равными по&nbsp;сумме ежемесячными) платежами. Обязательная передача приобретаемого с&nbsp;использованием кредита а/м
+                            в&nbsp;залог и&nbsp;страхование по&nbsp;программе КАСКО. Кредитование осуществляется АО&nbsp;&laquo;Тойота Банк&raquo; в&nbsp;регионах присутствия АО&nbsp;&laquo;Тойота Банк&raquo;.
+                            Лицензии Банка России &#8470;&nbsp;3470. Подробнее на&nbsp;сайте <a href="http://www.toyota-bank.ru">www.toyota-bank.ru</a> или
+                            по&nbsp;тел.&nbsp;<a href="tel:+78002000840">8&nbsp;800&nbsp;200 08 40</a>. Предложение действует с&nbsp;01.02.2018.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -257,5 +296,8 @@
             </div>
         </div>
     </footer>
+<script>
+
+</script>
 </body>
 </html>

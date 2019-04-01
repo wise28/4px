@@ -20,7 +20,8 @@
     "gulp-rename": "^1.2.3",
     "gulp-sass": "^4.0.1",
     "gulp-uglifyjs": "^0.6.2",
-    "imagemin-pngquant": "^5.1.0"
+    "imagemin-pngquant": "^5.1.0",
+    "inputmask": "^4.0.6"
   },
   "dependencies": {
     "jquery": "^3.3.1",

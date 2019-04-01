@@ -1,15 +1,9 @@
 .header-full-size {
   box-shadow: 1px 1px 13px 2px #acacac3d;
-  //@include media-breakpoint-down(sm) {
-  //  box-shadow: none;
-  //}
 }
 .header {
   font-family: $font_family_toyota_display;
   font-weight: bold;
-  &__navbar {
-
-  }
   .menu {
     display: flex;
     flex-wrap: nowrap;
@@ -17,9 +11,9 @@
     text-align: center;
     @include media-breakpoint-down(lg) {
       justify-content: center;
-      flex-wrap: wrap;
+      //flex-wrap: wrap;
     }
-    @include media-breakpoint-down (sm) {
+    @include media-breakpoint-down (md) {
       flex-direction: column;
       display: none;
     }
@@ -45,15 +39,14 @@
   }
 }
 
-//the styles fo hamburger menu
+//the styles for hamburger menu
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-down(md) {
   %line{
     background: black;
     width:30px;
     height:3px;
   }
-
   //Slide that sub-menu in
   @keyframes menu-active-slide {
     0% {
@@ -63,7 +56,6 @@
       transform: translateX(0);
     }
   }
-
   //Rotate that top bar on active
   @keyframes top-rot-in {
     0% {
@@ -73,7 +65,6 @@
     100% {
       transform: rotate(45deg);
       transform-origin: left;
-
     }
   }
   //Rotate that bottom bar on active
@@ -85,27 +76,21 @@
     100% {
       transform: rotate(-45deg);
       transform-origin: left;
-
     }
   }
-
-  .button{
+  .hamburger{
     padding:10px;
     height: 50px;
     width: 50px;
     display:block;
     position: relative;
     z-index: 5;
-    //@include media-breakpoint-down (sm) {
-    //  z-index: 5;
-    //}
   }
 
-  .mobile-menu{
+  .hamburger__wrap-lines{
     @extend %line;
-    position: absolute;
+    position: fixed;
     top: 24px;
-    //display: none;
     &:before{
       @extend %line;
       content: '';
@@ -123,14 +108,12 @@
     }
   }
 
-
   ///Lets make a sub-menu
-  .mobile-menu__item{
-    list-style-type:none;
-    margin:0;
-    position:fixed;
-    top:8px;
-    //left:73px;
+  .mobile-sub-menu {
+    list-style-type: none;
+    margin: 0;
+    position: fixed;
+    top: 0;
     transition: opacity 0.25s ease;
     display: none;
     left: 0;
@@ -138,20 +121,12 @@
     width: 100vw;
     background-color: white;
     z-index: 5;
-    //@include media-breakpoint-down (sm) {
-    //  left: 0;
-    //  height: 100vh;
-    //  width: 100vw;
-    //  background-color: white;
-    //  z-index: 5;
-    //  display: none;
-    //}
+    padding-top: 50px;
   }
 
   .active{
-    .mobile-menu{
+    .hamburger__wrap-lines{
       background:transparent;
-      //display: block;
       &:before{
         top: -11px;
         left:5px;
@@ -162,9 +137,8 @@
         left:5px;
         animation: bot-rot-in .5s forwards;
       }
-
     }
-    .mobile-menu__item{
+    .mobile-sub-menu{
       display: block;
       transition: opacity 0.25s ease;
       animation: menu-active-slide .25s;

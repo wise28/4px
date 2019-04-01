@@ -26,7 +26,6 @@
 
 //for links state
 @mixin links ($color_hover, $color_active, $color_focus, $color_visit) {
-  //a {
   &:visited {
     color: $color_visit;
   }
@@ -40,7 +39,6 @@
     color: $color_hover;
     background-color: $background_color_hover;
   }
-  //}
 }
 
 

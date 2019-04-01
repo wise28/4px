@@ -1,3 +1,27 @@
+//for ie 10 started
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .stock-item {
+    flex-wrap: wrap;
+    width: 235px;
+    &__title {
+      display: block;
+      width: 100%;
+    }
+    &__text {
+      display: block;
+      width: 100%;
+    }
+  }
+  .tabs__item-title {
+    flex-wrap: wrap;
+  }
+  .tabs__item_size {
+    display: block;
+    width: 100%;
+  }
+}
+//for ie 10 end
+
 *, ::before, ::after {
   box-sizing: border-box;
   margin: 0;
@@ -13,6 +37,7 @@ html {
 body {
   font-family: $font_family_toyota_text;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 .container {
@@ -38,7 +63,7 @@ img {
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
-    @include media-breakpoint-down (xl) {
+    @include media-breakpoint-down (lg) {
       justify-content: center;
     }
     &-wrapper {
@@ -68,7 +93,7 @@ img {
       padding-right: 10px;
       @include links (#ffffff, #ffffff, #ffffff,#696969);
     }
-    .color_active {
+    .color-active {
       color: white;
     }
     &_size {
@@ -77,6 +102,14 @@ img {
     &-text {
       font-size: $font_size_link - 2;
       line-height: 1.286;
+    }
+    @include media-breakpoint-between (lg, xl) {
+      width: 248px;
+      padding: 10px;
+    }
+    @include media-breakpoint-down (lg) {
+      width: 100%;
+      padding: 10px;
     }
   }
   &__content {
@@ -93,14 +126,11 @@ img {
     }
     @include media-breakpoint-between (769, xl) {
       background-image: url("../img/bg-only-auto-min.png");
-      //background-size: auto;
       background-position: right bottom;
       background-size: 57%;
-      //background-color: #ebebeb;
       background-color: white;
     }
     @include media-breakpoint-down (md) {
-      //background-color: #ebebeb;
       background-image: none;
       background-color: white;
     }
@@ -124,15 +154,72 @@ img {
     justify-content: space-between;
     align-items: center;
   }
+}
+.heading-wrap {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../img/h1-bg-min.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  @include media-breakpoint-down (sm) {
+    margin: 0 auto;
+  }
+  padding: 38px 50px;
   &__title {
-    background-image: url("../img/bg-h1-min.png");
-    background-size: cover;
-    background-repeat: no-repeat;
     color: white;
-    padding: 38px 50px;
     font-size: 32px;
     line-height: 1.5;
     font-family: $font_family_toyota_display;
+    margin: 0 0 15px 0;
+  }
+  &__text {
+    font-size: $font_size_main + 6;
+    font-family: $font_family_toyota_text;
+    color: rgb(51, 51, 51);
+    line-height: 1;
+    font-weight: 300;
+  }
+}
+.special-price {
+  position: relative;
+  @include media-breakpoint-down (sm) {
+    margin: 0 auto;
+  }
+  &__block {
+    background-image: linear-gradient( 103deg, rgb(178,0,0) 0%, rgb(229,0,0) 100%);
+    transform: skew(-30deg);
+    width: 328px;
+    height: 67px;
+    position: relative;
+    z-index: 1;
+    @include media-breakpoint-down (sm) {
+      width: 260px;
+    }
+  }
+  .price__title {
+    font-weight: bold;
+    line-height: 1.333;
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 42px;
+    z-index: 2;
+  }
+  .block-another-color {
+    background-image: none;
+    border-top: 6px solid transparent;
+    border-left: 321px solid #a0a0a0;
+    transform: skew(10deg);
+    position: absolute;
+    top: -11px;
+    z-index: 0;
+    width: 318px;
+    left: -12px;
+    @include media-breakpoint-down (sm) {
+      border-left: 240px solid #a0a0a0;
+      width: 260px;
+      left: 0;
+    }
   }
 }
 .about-auto-content {
@@ -153,6 +240,7 @@ img {
     padding-bottom: 0;
   }
 }
+
 .stock-item {
   display: flex;
   flex-direction: column;
@@ -226,6 +314,9 @@ img {
     margin-top: 60px;
     flex-wrap: wrap;
     justify-content: space-around;
+  }
+  &_none {
+    display: none;
   }
 }
 .available-auto-img {
@@ -353,6 +444,8 @@ img {
         margin-top: 10px;
         margin-bottom: 10px;
         box-shadow: 2px 1px 3px 0 rgb(184, 170, 170);
+        border: 1px solid #b8aaaa;
+        background-color: #fff;
         @include placeholder {
           font-size: $font_size_main - 2;
           font-family: $font_family_toyota_display;
@@ -403,8 +496,10 @@ img {
   box-shadow: 0 0 9px 1px rgba(0, 0, 0, 0.15);
   display: block;
   margin: 0 auto;
+  cursor: pointer;
   &:hover, &:active, &:focus, &:visited {
     background-color: rgb(194, 3, 3);
+    border-color: rgb(194, 3, 3);
   }
   @include pseudo;
   &:before {
@@ -420,6 +515,9 @@ img {
 }
 
 .stock-condition {
+  @include media-breakpoint-down(xls) {
+    padding: 0 15px;
+  }
   .condition-button-wrapper {
     padding: 25px 0;
   }
@@ -449,3 +547,4 @@ img {
 }
 
 //the section stock-condition end
+

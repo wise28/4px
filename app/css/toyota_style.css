@@ -93,9 +93,13 @@
     -webkit-box-align: center;
     -webkit-align-items: center;
         -ms-flex-align: center;
-            align-items: center; }
+            align-items: center;
+    padding: 0 30px; }
+    @media (max-width: 575px) {
+      .modal-form__content {
+        padding: 0 10px; } }
   .modal-form .modal-form-input {
-    width: 80%;
+    width: 100%;
     padding: 10px 15px;
     margin: 10px 0;
     border: 1px solid #afafaf;
@@ -126,7 +130,7 @@
       font-size: 14px;
       color: #979797; }
   .modal-form .input-auto {
-    width: 50%;
+    width: 70%;
     margin-right: 7px; }
   .modal-form .input-year {
     width: 27%;
@@ -165,10 +169,11 @@
     .modal-form-label {
       display: block; } }
 
-.checkbox_none {
-  display: none; }
+.checkbox-none {
+  position: absolute;
+  left: -9999px; }
 
-.modal-form-label > span {
+.modal-form-label > .modal-form-checkbox {
   display: inline-block;
   width: 17px;
   height: 15px;
@@ -176,9 +181,9 @@
   cursor: pointer;
   border: 1px solid #e50000; }
 
-.modal-form-label > .checkbox_none:checked + span {
-  background-image: url("../../../img/checkbox-active-min.png");
-  border: none; }
+.modal-form-label > .checkbox-none:checked + .modal-form-checkbox {
+  background-image: url("../../../img/arrow-checkbox-min.png");
+  background-repeat: no-repeat; }
 
 .main-button {
   font-size: 16px;
@@ -189,9 +194,11 @@
   padding: 15px 0;
   cursor: pointer;
   background-color: #e50000;
+  border: 1px solid #e50000;
   color: white; }
   .main-button:hover, .main-button:active, .main-button:focus, .main-button:visited {
-    background-color: #c20303; }
+    background-color: #c20303;
+    border-color: #c20303; }
 
 .header-full-size {
   -webkit-box-shadow: 1px 1px 13px 2px #acacac3d;
@@ -218,11 +225,8 @@
         -webkit-box-pack: center;
         -webkit-justify-content: center;
             -ms-flex-pack: center;
-                justify-content: center;
-        -webkit-flex-wrap: wrap;
-            -ms-flex-wrap: wrap;
-                flex-wrap: wrap; } }
-    @media (max-width: 575px) {
+                justify-content: center; } }
+    @media (max-width: 767px) {
       .header .menu {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -256,8 +260,8 @@
           padding: 5px 10px;
           height: auto; } }
 
-@media (max-width: 575px) {
-  .mobile-menu, .mobile-menu:before, .mobile-menu:after {
+@media (max-width: 767px) {
+  .hamburger__wrap-lines, .hamburger__wrap-lines:before, .hamburger__wrap-lines:after {
     background: black;
     width: 30px;
     height: 3px; }
@@ -319,34 +323,34 @@
               transform: rotate(-45deg);
       -webkit-transform-origin: left;
               transform-origin: left; } }
-  .button {
+  .hamburger {
     padding: 10px;
     height: 50px;
     width: 50px;
     display: block;
     position: relative;
     z-index: 5; }
-  .mobile-menu {
-    position: absolute;
+  .hamburger__wrap-lines {
+    position: fixed;
     top: 24px; }
-    .mobile-menu:before {
+    .hamburger__wrap-lines:before {
       content: '';
       position: absolute;
       top: -8px;
       -webkit-animation: menu-load-state-top .5s;
               animation: menu-load-state-top .5s; }
-    .mobile-menu:after {
+    .hamburger__wrap-lines:after {
       content: '';
       position: absolute;
       top: 8px;
       left: 0;
       -webkit-animation: menu-load-state-bottom .5s;
               animation: menu-load-state-bottom .5s; }
-  .mobile-menu__item {
+  .mobile-sub-menu {
     list-style-type: none;
     margin: 0;
     position: fixed;
-    top: 8px;
+    top: 0;
     -webkit-transition: opacity 0.25s ease;
     -o-transition: opacity 0.25s ease;
     transition: opacity 0.25s ease;
@@ -355,26 +359,47 @@
     height: 100vh;
     width: 100vw;
     background-color: white;
-    z-index: 5; }
-  .active .mobile-menu {
+    z-index: 5;
+    padding-top: 50px; }
+  .active .hamburger__wrap-lines {
     background: transparent; }
-    .active .mobile-menu:before {
+    .active .hamburger__wrap-lines:before {
       top: -11px;
       left: 5px;
       -webkit-animation: top-rot-in .5s forwards;
               animation: top-rot-in .5s forwards; }
-    .active .mobile-menu:after {
+    .active .hamburger__wrap-lines:after {
       top: 10px;
       left: 5px;
       -webkit-animation: bot-rot-in .5s forwards;
               animation: bot-rot-in .5s forwards; }
-  .active .mobile-menu__item {
+  .active .mobile-sub-menu {
     display: block;
     -webkit-transition: opacity 0.25s ease;
     -o-transition: opacity 0.25s ease;
     transition: opacity 0.25s ease;
     -webkit-animation: menu-active-slide .25s;
             animation: menu-active-slide .25s; } }
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .stock-item {
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+    width: 235px; }
+    .stock-item__title {
+      display: block;
+      width: 100%; }
+    .stock-item__text {
+      display: block;
+      width: 100%; }
+  .tabs__item-title {
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap; }
+  .tabs__item_size {
+    display: block;
+    width: 100%; } }
 
 *, ::before, ::after {
   -webkit-box-sizing: border-box;
@@ -392,7 +417,8 @@ html {
 
 body {
   font-family: "Toyota Text", Arial, sans-serif;
-  position: relative; }
+  position: relative;
+  scroll-behavior: smooth; }
 
 .container {
   display: block;
@@ -417,7 +443,7 @@ img {
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
           flex-wrap: wrap; }
-  @media (max-width: 1199px) {
+  @media (max-width: 991px) {
     .tabs__caption {
       -webkit-box-pack: center;
       -webkit-justify-content: center;
@@ -468,13 +494,21 @@ img {
     .tabs__item_color:hover {
       color: #ffffff;
       background-color: #e50000; }
-  .tabs__item .color_active {
+  .tabs__item .color-active {
     color: white; }
   .tabs__item_size {
     font-size: 18px; }
   .tabs__item-text {
     font-size: 14px;
     line-height: 1.286; }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .tabs__item {
+      width: 248px;
+      padding: 10px; } }
+  @media (max-width: 991px) {
+    .tabs__item {
+      width: 100%;
+      padding: 10px; } }
 
 .tabs__content {
   display: none;
@@ -530,16 +564,82 @@ img {
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center; }
-  .about-auto__title {
-    background-image: url("../img/bg-h1-min.png");
-    -webkit-background-size: cover;
-            background-size: cover;
-    background-repeat: no-repeat;
+
+.heading-wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-image: url("../img/h1-bg-min.png");
+  -webkit-background-size: contain;
+          background-size: contain;
+  background-repeat: no-repeat;
+  padding: 38px 50px; }
+  @media (max-width: 575px) {
+    .heading-wrap {
+      margin: 0 auto; } }
+  .heading-wrap__title {
     color: white;
-    padding: 38px 50px;
     font-size: 32px;
     line-height: 1.5;
-    font-family: "Toyota Display", Arial, sans-serif; }
+    font-family: "Toyota Display", Arial, sans-serif;
+    margin: 0 0 15px 0; }
+  .heading-wrap__text {
+    font-size: 24px;
+    font-family: "Toyota Text", Arial, sans-serif;
+    color: #333333;
+    line-height: 1;
+    font-weight: 300; }
+
+.special-price {
+  position: relative; }
+  @media (max-width: 575px) {
+    .special-price {
+      margin: 0 auto; } }
+  .special-price__block {
+    background-image: -webkit-linear-gradient(347deg, #b20000 0%, #e50000 100%);
+    background-image: -o-linear-gradient(347deg, #b20000 0%, #e50000 100%);
+    background-image: linear-gradient(103deg, #b20000 0%, #e50000 100%);
+    -webkit-transform: skew(-30deg);
+        -ms-transform: skew(-30deg);
+            transform: skew(-30deg);
+    width: 328px;
+    height: 67px;
+    position: relative;
+    z-index: 1; }
+    @media (max-width: 575px) {
+      .special-price__block {
+        width: 260px; } }
+  .special-price .price__title {
+    font-weight: bold;
+    line-height: 1.333;
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 42px;
+    z-index: 2; }
+  .special-price .block-another-color {
+    background-image: none;
+    border-top: 6px solid transparent;
+    border-left: 321px solid #a0a0a0;
+    -webkit-transform: skew(10deg);
+        -ms-transform: skew(10deg);
+            transform: skew(10deg);
+    position: absolute;
+    top: -11px;
+    z-index: 0;
+    width: 318px;
+    left: -12px; }
+    @media (max-width: 575px) {
+      .special-price .block-another-color {
+        border-left: 240px solid #a0a0a0;
+        width: 260px;
+        left: 0; } }
 
 .about-auto-content {
   max-width: 490px;
@@ -646,6 +746,8 @@ img {
     -webkit-justify-content: space-around;
         -ms-flex-pack: distribute;
             justify-content: space-around; }
+  .available-auto_none {
+    display: none; }
 
 .available-auto-img {
   -webkit-flex-shrink: 0;
@@ -786,7 +888,9 @@ img {
       margin-top: 10px;
       margin-bottom: 10px;
       -webkit-box-shadow: 2px 1px 3px 0 #b8aaaa;
-              box-shadow: 2px 1px 3px 0 #b8aaaa; }
+              box-shadow: 2px 1px 3px 0 #b8aaaa;
+      border: 1px solid #b8aaaa;
+      background-color: #fff; }
       .offer-full-size .unique-experience__form .offer-form-input::-webkit-input-placeholder {
         font-size: 16px;
         font-family: "Toyota Display", Arial, sans-serif;
@@ -849,9 +953,11 @@ img {
           box-shadow: 0 0 9px 1px rgba(0, 0, 0, 0.15);
   display: block;
   margin: 0 auto;
+  cursor: pointer;
   position: relative; }
   .button-up:hover, .button-up:active, .button-up:focus, .button-up:visited {
-    background-color: #c20303; }
+    background-color: #c20303;
+    border-color: #c20303; }
   .button-up::after, .button-up::before {
     content: "";
     display: block;
@@ -864,6 +970,10 @@ img {
     bottom: 0;
     left: 30%;
     right: 0; }
+
+@media (max-width: 1365px) {
+  .stock-condition {
+    padding: 0 15px; } }
 
 .stock-condition .condition-button-wrapper {
   padding: 25px 0; }
@@ -905,6 +1015,9 @@ img {
       -ms-flex-align: center;
           align-items: center;
   height: 80px; }
+  @media (max-width: 1365px) {
+    .footer-wrapper {
+      padding: 0 15px; } }
 
 .footer-text {
   color: #868686;
